@@ -18,12 +18,27 @@ const playerChoice = (e) => {
     userChoice = e.target.dataset.option;
     infoChoice.textContent = `You chose a ${userChoice}!`;
     
+    console.log('PLAYER', userChoice)
     computerChoice();
+}
+
+const gameResult = () => {
+    if (userChoice === 'ROCK' && compChoice === 'SCISSORS' || userChoice === 'PAPER' && compChoice === 'ROCK' || userChoice === 'SCISSORS' && compChoice === 'PAPER') {
+        console.log('YOU WON')
+    }
+    else if (userChoice === compChoice) {
+        console.log('DRAW!')
+    }
+    else {
+        console.log('COMP WON')
+    }
 }
 
 const computerChoice = ()  => {
     const choiceArray = ['ROCK', 'PAPER', 'SCISSORS'];
     compChoice = choiceArray[Math.floor(Math.random()*choiceArray.length)];
+    console.log('COMP', compChoice)
+    gameResult()
 }
 
 
