@@ -1,0 +1,63 @@
+@import url("https://fonts.googleapis.com/css2?family=Fuzzy+Bubbles&family=Mulish&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.game-title {
+  font-family: "Mulish", sans-serif;
+  text-align: center;
+  font-size: 1.9rem;
+  text-transform: uppercase;
+  margin: 20px 0;
+}
+.choice-info {
+    font-family: 'Fuzzy Bubbles', cursive;
+    text-align: center;
+    font-size: 1.7rem;
+    text-transform: uppercase;
+    margin-top: 20px;
+}
+.container {
+    margin-top: 30px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+.game-field {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+}
+.rock,
+.paper,
+.scissors {
+  width: 250px;
+  height: 250px;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+.rock img,
+.paper img,
+.scissors img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.user-score, .comp-score {
+    text-transform: uppercase;
+    text-align: center;
+    height: 100px;
+}
+.user-score span, .comp-score span {
+    font-family: 'Fuzzy Bubbles', cursive;
+    font-size: 2.5rem;
+    line-height: 100px;
+}
+.user-score p, .comp-score p {
+    font-size: 2rem;
+    font-family: 'Fuzzy Bubbles', cursive;
+    text-transform: uppercase;
+}
