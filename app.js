@@ -4,6 +4,9 @@ const userScore = document.querySelector('.user-points');
 const compScore = document.querySelector('.comp-points');
 const gameImages = document.querySelectorAll('.game-field div');
 
+const tablePlayer = [...document.querySelectorAll('.table-player')];
+const tableComp = [...document.querySelectorAll('.table-comp')];
+const showDraw = document.querySelector('.draw-text');
 
 let userChoice = "";
 let compChoice = ""; 
@@ -11,7 +14,7 @@ let userPoints = 0;
 let compPoints = 0;
 
 infoChoicePlayer.textContent = "Choose one !";
-infoChoiceComp.textContent =  "Comp choice ?";
+infoChoiceComp.textContent =  "Comp choice !";
 userScore.textContent = userPoints;
 compScore.textContent = compPoints;
 
@@ -31,22 +34,29 @@ const gameResult = () => {
     }
     else if (userChoice === compChoice) {
         console.log('DRAW!')
+        showDraw.classList.add('show');
     }
     else {
         console.log("COMP WON");
         compPoints++;
         compScore.textContent = compPoints;
     }
+    setTimeout(() => {
+        infoChoicePlayer.textContent = "Choose one !";
+        infoChoiceComp.textContent =  "Comp choice !";
+        showDraw.classList.remove('show');
+        gameImages.forEach((image) => image.addEventListener('click', playerChoice));
+    }, 2000)   
 }
+
+const choiceArray = ['ROCK', 'PAPER', 'SCISSORS'];
 
 const computerChoice = ()  => {
     setTimeout(() => {
-        const choiceArray = ['ROCK', 'PAPER', 'SCISSORS'];
         compChoice = choiceArray[Math.floor(Math.random()*choiceArray.length)];
         infoChoiceComp.textContent = `Comp chose a ${compChoice}`;
         gameResult()
-        gameImages.forEach((image) => image.addEventListener('click', playerChoice));
-    }, 1000)
+    },1000)
 }
 
 
