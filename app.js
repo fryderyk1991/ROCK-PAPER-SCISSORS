@@ -18,6 +18,9 @@ infoChoiceComp.textContent =  "Comp choice !";
 userScore.textContent = userPoints;
 compScore.textContent = compPoints;
 
+let counterOfRounds = -1;
+
+
 
 const playerChoice = (e) => {
     userChoice = e.target.dataset.option;
@@ -31,17 +34,34 @@ const gameResult = () => {
         console.log('YOU WON')
         userPoints++;
         userScore.textContent = userPoints;
+        counterOfRounds++;
+        console.log(counterOfRounds);
+        let renderPlayerResultInTable = tablePlayer[counterOfRounds];
+        renderPlayerResultInTable.textContent = 'win';
     }
     else if (userChoice === compChoice) {
         console.log('DRAW!')
         showDraw.classList.add('show');
+        counterOfRounds++;
+        console.log(counterOfRounds)
+        let renderPlayerResultInTable = tablePlayer[counterOfRounds];
+        renderPlayerResultInTable.textContent = 'draw';
+        let renderCompResultInTable = tableComp[counterOfRounds];
+        renderCompResultInTable.textContent = 'draw';
     }
     else {
         console.log("COMP WON");
         compPoints++;
         compScore.textContent = compPoints;
+        counterOfRounds++;
+        console.log(counterOfRounds)
+        let renderCompResultInTable = tableComp[counterOfRounds];
+        renderCompResultInTable.textContent = 'win';
     }
-    setTimeout(() => {
+    if (counterOfRounds === 4) {
+        console.log('game over')
+    }
+     setTimeout(() => {
         infoChoicePlayer.textContent = "Choose one !";
         infoChoiceComp.textContent =  "Comp choice !";
         showDraw.classList.remove('show');
