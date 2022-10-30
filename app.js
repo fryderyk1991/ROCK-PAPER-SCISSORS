@@ -8,6 +8,10 @@ const tablePlayer = [...document.querySelectorAll('.table-player')];
 const tableComp = [...document.querySelectorAll('.table-comp')];
 const showDraw = document.querySelector('.draw-text');
 
+const modalContainer = document.querySelector('.modal-container');
+const modalText = document.querySelector('.modal-text');
+const modalCloseBtn = document.querySelector('.fa-solid');
+
 let userChoice = "";
 let compChoice = ""; 
 let userPoints = 0;
@@ -20,7 +24,21 @@ compScore.textContent = compPoints;
 
 let counterOfRounds = -1;
 
+const counterOfWinPlayer = [];
+const counterOfWinComp = [];
 
+const modalWin = () => {
+    modalContainer.classList.add('show');
+    modalText.textContent = 'congratulations, you are the winner!';
+}
+const modalLoose = () => {
+    modalContainer.classList.add('show');
+    modalText.textContent = 'sorry, you lost!';
+}    
+const modalDraw = () => {
+    modalContainer.classList.add('show');
+    modalText.textContent = 'draw! try again!';
+}
 
 const playerChoice = (e) => {
     userChoice = e.target.dataset.option;
@@ -29,37 +47,50 @@ const playerChoice = (e) => {
     computerChoice();
 }
 
+modalCloseBtn.addEventListener('click', () => {
+    modalContainer.classList.remove('show');
+})
+
 const gameResult = () => {
     if (userChoice === 'ROCK' && compChoice === 'SCISSORS' || userChoice === 'PAPER' && compChoice === 'ROCK' || userChoice === 'SCISSORS' && compChoice === 'PAPER') {
-        console.log('YOU WON')
         userPoints++;
         userScore.textContent = userPoints;
         counterOfRounds++;
-        console.log(counterOfRounds);
         let renderPlayerResultInTable = tablePlayer[counterOfRounds];
-        renderPlayerResultInTable.textContent = 'win';
+        let winPlayer = renderPlayerResultInTable.textContent = 'win';
+        counterOfWinPlayer.push(winPlayer);
     }
     else if (userChoice === compChoice) {
-        console.log('DRAW!')
         showDraw.classList.add('show');
         counterOfRounds++;
-        console.log(counterOfRounds)
         let renderPlayerResultInTable = tablePlayer[counterOfRounds];
         renderPlayerResultInTable.textContent = 'draw';
         let renderCompResultInTable = tableComp[counterOfRounds];
         renderCompResultInTable.textContent = 'draw';
     }
     else {
-        console.log("COMP WON");
         compPoints++;
         compScore.textContent = compPoints;
         counterOfRounds++;
-        console.log(counterOfRounds)
         let renderCompResultInTable = tableComp[counterOfRounds];
-        renderCompResultInTable.textContent = 'win';
+        let winComp = renderCompResultInTable.textContent = 'win';
+        counterOfWinComp.push(winComp);
     }
-    if (counterOfRounds === 4) {
-        console.log('game over')
+    // game over
+    if (counterOfRounds === 4 && counterOfWinPlayer.length > counterOfWinComp.length) {
+        console.log('game over - PLAYER WON!')
+        modalWin();
+        return playerChoice;
+    }
+    if (counterOfRounds === 4 && counterOfWinPlayer.length < counterOfWinComp.length) {
+        console.log('game over -  COMP WON!')
+        modalLoose();
+        return playerChoice;
+    }
+    if (counterOfRounds === 4 && counterOfWinPlayer.length === counterOfWinComp.length) {
+        console.log('game over - DRAW!')
+        modalDraw();
+        return playerChoice;
     }
      setTimeout(() => {
         infoChoicePlayer.textContent = "Choose one !";
@@ -78,6 +109,7 @@ const computerChoice = ()  => {
         gameResult()
     },1000)
 }
+
 
 
 gameImages.forEach((image) => image.addEventListener('click', playerChoice));
