@@ -12,6 +12,7 @@ const modalContainer = document.querySelector('.modal-container');
 const modalText = document.querySelector('.modal-text');
 const modalCloseBtn = document.querySelector('.fa-solid');
 const tryAgainBtn = document.querySelector('.modal-button');
+const restartGameBtn = document.querySelector('.restart-btn');
 
 let userChoice = "";
 let compChoice = ""; 
@@ -28,6 +29,19 @@ let counterOfRounds = -1;
 const counterOfWinPlayer = [];
 const counterOfWinComp = [];
 
+
+const restartGame = () => {
+    infoChoicePlayer.textContent = "Choose one !";
+    infoChoiceComp.textContent =  "Comp choice !";
+    userPoints = 0;
+    userScore.textContent = userPoints;
+    compPoints = 0;
+    compScore.textContent = userPoints;
+    counterOfRounds = -1;
+    showDraw.classList.remove('show');
+    cleanTableScore();
+    gameImages.forEach((image) => image.addEventListener('click', playerChoice));
+}
 
 const cleanTableScore = () => {
     tablePlayer.forEach((item) => {
@@ -70,6 +84,8 @@ const playerChoice = (e) => {
     gameImages.forEach((image) => image.removeEventListener('click', playerChoice));
     computerChoice();
 }
+
+restartGameBtn.addEventListener('click', restartGame);
 
 tryAgainBtn.addEventListener('click', playAgain);
 
