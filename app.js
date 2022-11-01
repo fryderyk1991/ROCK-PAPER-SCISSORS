@@ -28,23 +28,8 @@ compScore.textContent = compPoints;
 
 let counterOfRounds = -1;
 
-const counterOfWinPlayer = [];
-const counterOfWinComp = [];
-
-
-const restartGame = () => {
-    // blurBackground.classList.add('bg');
-    // infoChoicePlayer.textContent = "Choose one !";
-    // infoChoiceComp.textContent =  "Comp choice !";
-    // userPoints = 0;
-    // userScore.textContent = userPoints;
-    // compPoints = 0;
-    // compScore.textContent = userPoints;
-    // counterOfRounds = -1;
-    // showDraw.classList.remove('show');
-    // cleanTableScore();
-    // gameImages.forEach((image) => image.addEventListener('click', playerChoice));
-}
+let counterOfWinPlayer = [];
+let counterOfWinComp = [];
 
 const cleanTableScore = () => {
     tablePlayer.forEach((item) => {
@@ -66,23 +51,35 @@ const playAgain = () => {
     showDraw.classList.remove('show');
     blurBackground.classList.remove('bg');
     cleanTableScore();
+    counterOfWinPlayer = [];
+    counterOfWinComp = [];
     gameImages.forEach((image) => image.addEventListener('click', playerChoice));
 } 
+
+const modalRestart = () => {
+    modalContainer.classList.add('show');
+    modalText.textContent = 'are you sure ?';
+    blurBackground.classList.add('bg');
+    tryAgainBtn.textContent = 'yes';
+}
 
 const modalWin = () => {
     modalContainer.classList.add('show');
     modalText.textContent = 'congratulations, you are the winner!';
     blurBackground.classList.add('bg');
+    tryAgainBtn.textContent = 'try again...';
 }
 const modalLoose = () => {
     modalContainer.classList.add('show');
     modalText.textContent = 'sorry, you lost!';
     blurBackground.classList.add('bg');
+    tryAgainBtn.textContent = 'try again...';
 }    
 const modalDraw = () => {
     modalContainer.classList.add('show');
     modalText.textContent = 'draw! try again!';
     blurBackground.classList.add('bg');
+    tryAgainBtn.textContent = 'try again...';
 }
 
 const playerChoice = (e) => {
@@ -92,7 +89,7 @@ const playerChoice = (e) => {
     computerChoice();
 }
 
-restartGameBtn.addEventListener('click', restartGame);
+restartGameBtn.addEventListener('click', modalRestart);
 
 tryAgainBtn.addEventListener('click', playAgain);
 
