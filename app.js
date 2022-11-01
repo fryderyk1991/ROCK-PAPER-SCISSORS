@@ -9,10 +9,12 @@ const tableComp = [...document.querySelectorAll('.table-comp')];
 const showDraw = document.querySelector('.draw-text');
 
 const modalContainer = document.querySelector('.modal-container');
+const modal = document.querySelector('.modal');
 const modalText = document.querySelector('.modal-text');
 const modalCloseBtn = document.querySelector('.fa-solid');
 const tryAgainBtn = document.querySelector('.modal-button');
 const restartGameBtn = document.querySelector('.restart-btn');
+const blurBackground = document.querySelector('.blur');
 
 let userChoice = "";
 let compChoice = ""; 
@@ -31,16 +33,17 @@ const counterOfWinComp = [];
 
 
 const restartGame = () => {
-    infoChoicePlayer.textContent = "Choose one !";
-    infoChoiceComp.textContent =  "Comp choice !";
-    userPoints = 0;
-    userScore.textContent = userPoints;
-    compPoints = 0;
-    compScore.textContent = userPoints;
-    counterOfRounds = -1;
-    showDraw.classList.remove('show');
-    cleanTableScore();
-    gameImages.forEach((image) => image.addEventListener('click', playerChoice));
+    // blurBackground.classList.add('bg');
+    // infoChoicePlayer.textContent = "Choose one !";
+    // infoChoiceComp.textContent =  "Comp choice !";
+    // userPoints = 0;
+    // userScore.textContent = userPoints;
+    // compPoints = 0;
+    // compScore.textContent = userPoints;
+    // counterOfRounds = -1;
+    // showDraw.classList.remove('show');
+    // cleanTableScore();
+    // gameImages.forEach((image) => image.addEventListener('click', playerChoice));
 }
 
 const cleanTableScore = () => {
@@ -61,6 +64,7 @@ const playAgain = () => {
     compScore.textContent = userPoints;
     counterOfRounds = -1;
     showDraw.classList.remove('show');
+    blurBackground.classList.remove('bg');
     cleanTableScore();
     gameImages.forEach((image) => image.addEventListener('click', playerChoice));
 } 
@@ -68,14 +72,17 @@ const playAgain = () => {
 const modalWin = () => {
     modalContainer.classList.add('show');
     modalText.textContent = 'congratulations, you are the winner!';
+    blurBackground.classList.add('bg');
 }
 const modalLoose = () => {
     modalContainer.classList.add('show');
     modalText.textContent = 'sorry, you lost!';
+    blurBackground.classList.add('bg');
 }    
 const modalDraw = () => {
     modalContainer.classList.add('show');
     modalText.textContent = 'draw! try again!';
+    blurBackground.classList.add('bg');
 }
 
 const playerChoice = (e) => {
@@ -91,6 +98,7 @@ tryAgainBtn.addEventListener('click', playAgain);
 
 modalCloseBtn.addEventListener('click', () => {
     modalContainer.classList.remove('show');
+    blurBackground.classList.remove('bg');
 })
 
 const gameResult = () => {
