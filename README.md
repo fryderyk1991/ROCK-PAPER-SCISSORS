@@ -5,8 +5,8 @@ Just click on the selected image and wait for the computer's response. One game 
 I made a leaderboard for a better view of the game as well. If you want to restart the game, just click on the restart button.
 
 To play, click the link below :) 
- 
-## Live ---> https://rck-ppr-scr.netlify.app/
+  
+https://rck-ppr-scr.netlify.app/
 
 ![rock paper scissors main view](https://user-images.githubusercontent.com/95125510/199829147-a61ff6c4-a2b5-47ea-bb08-0e63bd0c68bd.png)
 
